@@ -7,6 +7,7 @@ import com.example.scheduler2.repository.MemberRepository;
 import com.example.scheduler2.repository.ScheduleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -40,5 +41,13 @@ public class ScheduleService {
         Schedule findschedule = scheduleRepository.findByIdOrElseThrow(id);
 
         return new ScheduleResponseDto(findschedule.getId(),findschedule.getTitle(),findschedule.getContents());
+    }
+
+    @Transactional
+    public void updateSchedule(Long id ,String newContent) {
+
+        Schedule findschedule = scheduleRepository.findByIdOrElseThrow(id);
+
+        findschedule.updateSchedule(newContent);
     }
 }
