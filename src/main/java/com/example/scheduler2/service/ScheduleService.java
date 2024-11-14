@@ -1,5 +1,8 @@
 package com.example.scheduler2.service;
 
+import com.example.scheduler2.dto.ScheduleResponseDto;
+import com.example.scheduler2.entity.Member;
+import com.example.scheduler2.entity.Schedule;
 import com.example.scheduler2.repository.MemberRepository;
 import com.example.scheduler2.repository.ScheduleRepository;
 import lombok.RequiredArgsConstructor;
@@ -11,4 +14,16 @@ public class ScheduleService {
 
     private ScheduleRepository scheduleRepository;
     private MemberRepository memberRepository;
+
+    public ScheduleResponseDto save(Long id, String title, String content) {
+
+        Member findmember = memberRepository.findMemberByIdOrElseThrowThrow(id);
+
+        Schedule schedule = new Schedule(title, content);
+        schedule.setMember(findmember);
+
+        scheduleRepository.save(schedule);
+
+        return new ScheduleResponseDto(schedule.getId(),schedule.getTitle(),schedule.getContents());
+    }
 }

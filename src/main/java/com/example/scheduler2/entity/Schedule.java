@@ -37,4 +37,8 @@ public class Schedule extends BaseEntity {
         this.title = title;
         this.contents = contents;
     }
+
+    public void setMember(Member member) {
+        this.member = member;
+    }
 }
