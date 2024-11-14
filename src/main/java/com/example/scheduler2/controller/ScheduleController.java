@@ -8,6 +8,7 @@ import com.example.scheduler2.service.ScheduleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -54,6 +55,15 @@ public class ScheduleController {
     public ResponseEntity<ScheduleResponseDto> updateSchedule(@PathVariable Long id, @RequestBody UpdateSchedule dto){
 
         scheduleService.updateSchedule(id, dto.getNewContent());
+
+        return new ResponseEntity<>(HttpStatus.OK);
+
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+
+        scheduleService.delete(id);
 
         return new ResponseEntity<>(HttpStatus.OK);
 
