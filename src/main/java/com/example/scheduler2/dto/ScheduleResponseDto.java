@@ -6,7 +6,7 @@ import lombok.Getter;
 @Getter
 public class ScheduleResponseDto {
 
-    private final long id;
+    private final Long id;
 
     private final String title;
 

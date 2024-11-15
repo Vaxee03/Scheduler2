@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Stack;
 
@@ -34,7 +35,7 @@ public class LoginController {
 
         Member member = findMemberByEmail.get();
 
-        if (!member.getPassword().equals(loginRequest.getPassword())) {
+        if (!Objects.equals(member.getPassword(), loginRequest.getPassword())) {
             return new ResponseEntity(HttpStatus.UNAUTHORIZED);
         }
 

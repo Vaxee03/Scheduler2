@@ -18,10 +18,10 @@ public class Schedule extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "Member_id")
+    @JoinColumn(name = "member_id")
     private Member member;
 
     @Column(nullable = false)

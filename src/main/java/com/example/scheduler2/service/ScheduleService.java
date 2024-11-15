@@ -15,8 +15,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ScheduleService {
 
-    private ScheduleRepository scheduleRepository;
-    private MemberRepository memberRepository;
+    private final ScheduleRepository scheduleRepository;
+    private final MemberRepository memberRepository;
 
     public ScheduleResponseDto save(Long id, String title, String content) {
 
@@ -26,12 +26,12 @@ public class ScheduleService {
 
         scheduleRepository.save(schedule);
 
-        return new ScheduleResponseDto(schedule.getId(),schedule.getTitle(),schedule.getContent());
+        return new ScheduleResponseDto(schedule.getId(), schedule.getTitle(), schedule.getContent());
     }
 
     public List<ScheduleResponseDto> findAll() {
 
-        return scheduleRepository.findAll().stream().map(ScheduleResponseDto::toDto).toList();
+        return scheduleRepository.findAll().stream().map(ScheduleResponseDto :: toDto).toList();
 
     }
 
@@ -39,7 +39,7 @@ public class ScheduleService {
 
         Schedule findschedule = scheduleRepository.findByIdOrElseThrow(id);
 
-        return new ScheduleResponseDto(findschedule.getId(),findschedule.getTitle(),findschedule.getContent());
+        return new ScheduleResponseDto(findschedule.getId(), findschedule.getTitle(), findschedule.getContent());
     }
 
     @Transactional
