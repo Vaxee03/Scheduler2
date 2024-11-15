@@ -3,7 +3,6 @@ package com.example.scheduler2.controller;
 import com.example.scheduler2.dto.CreateScheduleRequestDto;
 import com.example.scheduler2.dto.ScheduleResponseDto;
 import com.example.scheduler2.dto.UpdateSchedule;
-import com.example.scheduler2.service.MemberService;
 import com.example.scheduler2.service.ScheduleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -25,12 +24,11 @@ import java.util.List;
 public class ScheduleController {
 
     private final ScheduleService scheduleService;
-    private final MemberService memberService;
 
     @PostMapping
     public ResponseEntity<ScheduleResponseDto> save(@RequestBody CreateScheduleRequestDto requestDto){
 
-        ScheduleResponseDto scheduleResponseDto = scheduleService.save(requestDto.getId(), requestDto.getTitle(), requestDto.getContent());
+        ScheduleResponseDto scheduleResponseDto = scheduleService.save(requestDto.getMemberId(), requestDto.getTitle(), requestDto.getContent());
 
         return new ResponseEntity<>(scheduleResponseDto, HttpStatus.CREATED);
     }

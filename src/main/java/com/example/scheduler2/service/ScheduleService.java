@@ -20,14 +20,13 @@ public class ScheduleService {
 
     public ScheduleResponseDto save(Long id, String title, String content) {
 
-        Member findmember = memberRepository.findMemberByIdOrElseThrowThrow(id);
+        Member findmember = memberRepository.findMemberByIdOrElseThrow(id);
 
-        Schedule schedule = new Schedule(title, content);
-        schedule.setMember(findmember);
+        Schedule schedule = new Schedule(title, content, findmember);
 
         scheduleRepository.save(schedule);
 
-        return new ScheduleResponseDto(schedule.getId(),schedule.getTitle(),schedule.getContents());
+        return new ScheduleResponseDto(schedule.getId(),schedule.getTitle(),schedule.getContent());
     }
 
     public List<ScheduleResponseDto> findAll() {
@@ -40,7 +39,7 @@ public class ScheduleService {
 
         Schedule findschedule = scheduleRepository.findByIdOrElseThrow(id);
 
-        return new ScheduleResponseDto(findschedule.getId(),findschedule.getTitle(),findschedule.getContents());
+        return new ScheduleResponseDto(findschedule.getId(),findschedule.getTitle(),findschedule.getContent());
     }
 
     @Transactional

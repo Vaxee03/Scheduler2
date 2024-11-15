@@ -4,7 +4,6 @@ import com.example.scheduler2.dto.MemberResponseDto;
 import com.example.scheduler2.dto.SignupRequestDto;
 import com.example.scheduler2.dto.SignupResponseDto;
 import com.example.scheduler2.service.MemberService;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,7 +35,6 @@ public class MemberController {
         MemberResponseDto memberResponseDto = memberService.findById(id);
 
         return new ResponseEntity<>(memberResponseDto, HttpStatus.OK);
-
     }
 
     @DeleteMapping("/{id}")
