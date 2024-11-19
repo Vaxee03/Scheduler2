@@ -1,6 +1,6 @@
 package com.example.scheduler2.controller;
 
-import com.example.scheduler2.dto.LoginRequest;
+import com.example.scheduler2.dto.LoginRequestDto;
 import com.example.scheduler2.entity.Member;
 import com.example.scheduler2.repository.MemberRepository;
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Objects;
 import java.util.Optional;
-import java.util.Stack;
 
 @RestController
 @RequiredArgsConstructor
@@ -25,9 +24,9 @@ public class LoginController {
     private final MemberRepository memberRepository;
 
     @GetMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest, HttpServletRequest request) {
+    public ResponseEntity<String> login(@RequestBody LoginRequestDto loginRequestDto, HttpServletRequest request) {
 
-        Optional<Member> findMemberByEmail = memberRepository.findMemberByEmail(loginRequest.getEmail());
+        Optional<Member> findMemberByEmail = memberRepository.findMemberByEmail(loginRequestDto.getEmail());
 
         if (findMemberByEmail.isEmpty()) {
             return new ResponseEntity(HttpStatus.UNAUTHORIZED);
@@ -35,7 +34,7 @@ public class LoginController {
 
         Member member = findMemberByEmail.get();
 
-        if (!Objects.equals(member.getPassword(), loginRequest.getPassword())) {
+        if (!Objects.equals(member.getPassword(), loginRequestDto.getPassword())) {
             return new ResponseEntity(HttpStatus.UNAUTHORIZED);
         }
 

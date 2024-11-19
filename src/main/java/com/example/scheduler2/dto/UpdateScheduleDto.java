@@ -3,11 +3,11 @@ package com.example.scheduler2.dto;
 import lombok.Getter;
 
 @Getter
-public class UpdateSchedule {
+public class UpdateScheduleDto {
 
     private final String newContent;
 
-    public UpdateSchedule(String newContent) {
+    public UpdateScheduleDto(String newContent) {
         this.newContent = newContent;
     }
 
